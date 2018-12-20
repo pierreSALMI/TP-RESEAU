@@ -105,4 +105,5 @@ Le netcat sous Firewall marche !
 
 # III. Manipulations d'autres outils/protocoles côté client
 
-*  **DHCP** :
+*  **DHCP** : 10.33.3.254
+*    Bail expirant : jeudi 20 décembre 2018 13:03:20
