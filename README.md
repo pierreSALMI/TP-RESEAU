@@ -105,5 +105,12 @@ Le netcat sous Firewall marche !
 
 # III. Manipulations d'autres outils/protocoles côté client
 
-*  **DHCP** : 10.33.3.254
-*    Bail expirant : jeudi 20 décembre 2018 13:03:20
+*  **DHCP** : 
+	* Adresse DHCP :10.33.3.254
+	* Bail expirant : jeudi 20 décembre 2018 13:03:20
+	* Commande pour demander une autre adresse : `ipconfig /renew`
+
+* **DNS** :
+	* Serveurs DNS : 10.33.10.20
+	
+	
