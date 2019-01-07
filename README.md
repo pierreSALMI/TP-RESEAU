@@ -21,7 +21,7 @@ Commande pour trouver la passerelle: `ipconfig | findstr /i "passerelle"`
 Passerelle : 10.33.3.253
 
 
-(Image Info_carte)
+![Image Info_carte](/images/info_carte.PNG)
 
 La gateway relie notre ordinateur à d'autre réseau comme "Internet"
 
@@ -30,7 +30,7 @@ La gateway relie notre ordinateur à d'autre réseau comme "Internet"
 Premiere IP : 10.33.0.1
 Derniere IP : 10.33.3.254
 
-(image changement_adresse)
+![Image du réseau local](/images/changement_adresse.PNG)
 
 ## II. Exploration locale en duo
 
