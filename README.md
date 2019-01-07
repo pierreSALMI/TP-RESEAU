@@ -144,5 +144,26 @@ Le netcat sous Firewall marche !
 
 * **DNS** :
 	* Serveurs DNS : 10.33.10.20
+		
+		* NSlookup :
+		* Google : `Nom :    google.com
+		Addresses:  2a00:1450:4007:816::200e
+          172.217.19.238`
+		* Ynov : `Nom :    ynov.com
+		Address:  217.70.184.38`
+	* Reverse Lookup :
+		* 78.78.21.21 :
+		`Nom :    host-78-78-21-21.mobileonline.telia.com
+		Address:  78.78.21.21`
+
+		
+		Pour cette IP, on vois que l'host est un site internet nommé "Telia" 
+
+		* 92.16.54.88 :
+		`Nom :    host-92-16-54-88.as13285.net
+		Address:  92.16.54.88` 
+
+
+		Et pour celle la, on ne sais pas à qui elle appartient mais elle existe.
 	
 	
