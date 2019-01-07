@@ -143,9 +143,11 @@ Le netcat sous Firewall marche !
 	* Commande pour demander une autre adresse : `ipconfig /renew`
 
 * **DNS** :
-	* Serveurs DNS : 10.33.10.20
-		
-		* NSlookup :
+	* Adresse IP du serveur DNS : 
+		* Serveurs DNS : 10.33.10.20
+		* 10.33.10.7
+   		* 8.8.8.8
+	* NSlookup :
 		* Google : `Nom :    google.com
 		Addresses:  2a00:1450:4007:816::200e
           172.217.19.238`
@@ -165,5 +167,6 @@ Le netcat sous Firewall marche !
 
 
 		Et pour celle la, on ne sais pas à qui elle appartient mais elle existe.
+
 	
 	
