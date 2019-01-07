@@ -1,5 +1,37 @@
 # Tp_réseau
 
+## I. Exploration locale
+
+1. Affichage d'informations sur la pile TCP/IP locale
+Ligne de commande: `ipconfig /all`
+
+Interface Wifi:
+Nom : Intel(R) Dual Band Wireless-AC 7265
+Adresse IP: 10.33.3.200
+Adresse MAC: 88-78-73-51-96-04
+Adresse réseau : 10.33.0.0
+Adresse de broadcast : 10.33.3.255
+
+Interface Ethernet:
+Nom : Realtek PCIe GBE Family Controller
+Adresse IP : None
+Adresse MAC : 88-D7-F6-34-24-99
+
+Commande pour trouver la passerelle: `ipconfig | findstr /i "passerelle"`
+Passerelle : 10.33.3.253
+
+
+(Image Info_carte)
+
+La gateway relie notre ordinateur à d'autre réseau comme "Internet"
+
+2. Modifications des informations
+
+Premiere IP : 10.33.0.1
+Derniere IP : 10.33.3.254
+
+(image changement_adresse)
+
 ## II. Exploration locale en duo
 
   
