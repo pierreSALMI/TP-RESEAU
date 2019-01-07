@@ -21,7 +21,7 @@ Commande pour trouver la passerelle: `ipconfig | findstr /i "passerelle"`
 Passerelle : 10.33.3.253
 
 
-![Image Info_carte](/images/info_carte.PNG)
+![Image Info_carte](/images/Info_carte.PNG)
 
 La gateway relie notre ordinateur à d'autre réseau comme "Internet"
 
