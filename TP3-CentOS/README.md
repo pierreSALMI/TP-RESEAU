@@ -4,7 +4,7 @@
 
 4. Configuration réseau d'une machine CentOS
 
-Commande utilisé:
+Connexion exterieur:
 
 ```
 [admin@localhost ~]$ curl google.com
@@ -15,3 +15,4 @@ The document has moved
 <A HREF="http://www.google.com/">here</A>.
 </BODY></HTML>
 ```
+
