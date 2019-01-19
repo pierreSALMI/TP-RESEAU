@@ -94,7 +94,7 @@
         ```
 
     * B. netcat
-        netcat: :
+        netcat:
             Serveur:
             ```
                 [admin@localhost ~]$ nc -l 5454
