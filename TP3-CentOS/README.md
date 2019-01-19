@@ -119,6 +119,13 @@
 
             2019-01-08 16:42:20 (17,4 MB/s) - «index.html» sauvegardé [11356]
         ```
+    * Adresse :
+
+        Ynov.com : 217.70.184.38
+        
+        google.com :  216.58.205.14
+    
+    
 ## II. Notion de ports et SSH
 
 1. Exploration des ports locaux
