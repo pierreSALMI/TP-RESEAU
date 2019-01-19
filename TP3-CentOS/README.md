@@ -22,20 +22,33 @@
 
 ```
     [admin@localhost ~]$ ss -4tln
+    State      Recv-Q Send-Q               Local Address:Port                              Peer Address:Port
+    LISTEN     0      128                              *:22                                           *:*
+    LISTEN     0      100                      127.0.0.1:25                                           *:*
 ```
 
 2. SSH
+Connexion au serveur SSH:
 ```
     C:\Users\pierr>ssh admin@192.168.127.10
 ```
 
 3. Firewall
-Connexion:
+
+A.SSH:
+Changement du port:
+```
+    [admin@localhost ~]$ sudo nano /etc/ssh/sshd_config
+```
+On change la ligne : "#Port 22" en "Port 2222"
+
+Nouvelle connexion au serveur SSH:
 La commande ssh utilise par défault le port 22 pour se connecter. 
-Pour se connecter à notre serveur il faut donc préciser le nouveau port attribué
+Pour se connecter à notre serveur il faut donc préciser le nouveau port attribué avec l'option "-p"
 ```
-    C:\Users\pierr>ssh admin@192.168.127.10 2222
+    C:\Users\pierr>ssh admin@192.168.127.10 -p 2222
 ```
+
 
 netcat: :
 ```
