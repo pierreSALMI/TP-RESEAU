@@ -63,48 +63,48 @@
 ```
 
 2. SSH
-Connexion au serveur SSH:
-```
-    C:\Users\pierr>ssh admin@192.168.127.10
-```
+    * Connexion au serveur SSH:
+    ```
+        C:\Users\pierr>ssh admin@192.168.127.10
+    ```
 
 3. Firewall
 
-*A.SSH:
-    Changement du port:
-    ```
-        [admin@localhost ~]$ sudo nano /etc/ssh/sshd_config
-    ```
-    On change la ligne : "#Port 22" en "Port 2222"
-    Vérification :
-    ```
-        [admin@localhost ~]$ ss -4tln
-        State       Recv-Q Send-Q             Local Address:Port                            Peer Address:Port
-        LISTEN      0      128                            *:2222                                       *:*
-        LISTEN      0      100                    127.0.0.1:25                                         *:*
-    ```
+    * A.SSH:
+        Changement du port:
+        ```
+            [admin@localhost ~]$ sudo nano /etc/ssh/sshd_config
+        ```
+        On change la ligne : "#Port 22" en "Port 2222"
+        Vérification :
+        ```
+            [admin@localhost ~]$ ss -4tln
+            State       Recv-Q Send-Q             Local Address:Port                            Peer Address:Port
+            LISTEN      0      128                            *:2222                                       *:*
+            LISTEN      0      100                    127.0.0.1:25                                         *:*
+        ```
 
-    Nouvelle connexion au serveur SSH:
-    La commande ssh utilise par défault le port 22 pour se connecter. Il faut donc préciser le nouveau port attribué avec l'option "-p".
-    ```
-        C:\Users\pierr>ssh admin@192.168.127.10 -p 2222
-    ```
+        Nouvelle connexion au serveur SSH:
+        La commande ssh utilise par défault le port 22 pour se connecter. Il faut donc préciser le nouveau port attribué avec l'option "-p".
+        ```
+            C:\Users\pierr>ssh admin@192.168.127.10 -p 2222
+        ```
 
-*B. netcat
-    netcat: :
-        Serveur:
-        ```
-            [admin@localhost ~]$ nc -l 5454
-            d
-            d
-            reussi
-            youpi
-        ```
-        Client:
-        ```
-            C:\Users\pierr\Desktop\netcat-1.11>nc 192.168.102.10 5454
-            d
-            d
-            reussi
-            youpi
-        ```
+    * B. netcat
+        netcat: :
+            Serveur:
+            ```
+                [admin@localhost ~]$ nc -l 5454
+                d
+                d
+                reussi
+                youpi
+            ```
+            Client:
+            ```
+                C:\Users\pierr\Desktop\netcat-1.11>nc 192.168.102.10 5454
+                d
+                d
+                reussi
+                youpi
+            ```
