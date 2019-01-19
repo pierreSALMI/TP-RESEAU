@@ -96,7 +96,6 @@
     * B. netcat
         netcat: :
             Serveur:
-
             ```
                 [admin@localhost ~]$ nc -l 5454
                 d
@@ -106,7 +105,6 @@
             ```
 
             Client:
-            
             ```
                 C:\Users\pierr\Desktop\netcat-1.11>nc 192.168.102.10 5454
                 d
