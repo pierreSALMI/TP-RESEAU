@@ -93,23 +93,22 @@
             C:\Users\pierr>ssh admin@192.168.127.10 -p 2222
         ```
 
-    * B. netcat
-        netcat:
-        
-            Serveur:
-            ```
-                [admin@localhost ~]$ nc -l 5454
-                d
-                d
-                reussi
-                youpi
-            ```
+    * B. netcat:
 
-            Client:
-            ```
-                C:\Users\pierr\Desktop\netcat-1.11>nc 192.168.102.10 5454
-                d
-                d
-                reussi
-                youpi
-            ```
+        Serveur:
+        ```
+            [admin@localhost ~]$ nc -l 5454
+            d
+            d
+            reussi
+            youpi
+        ```
+
+        Client:
+        ```
+            C:\Users\pierr\Desktop\netcat-1.11>nc 192.168.102.10 5454
+            d
+            d
+            reussi
+            youpi
+        ```
