@@ -42,9 +42,9 @@ Changement du port:
 ```
 On change la ligne : "#Port 22" en "Port 2222"
 
-Nouvelle connexion au serveur SSH:
-La commande ssh utilise par défault le port 22 pour se connecter. 
-Pour se connecter à notre serveur il faut donc préciser le nouveau port attribué avec l'option "-p"
+Nouvelle connexion au serveur SSH: /n
+La commande ssh utilise par défault le port 22 pour se connecter. /n
+Pour se connecter à notre serveur il faut donc préciser le nouveau port attribué avec l'option "-p"./n
 ```
     C:\Users\pierr>ssh admin@192.168.127.10 -p 2222
 ```
