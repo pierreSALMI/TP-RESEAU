@@ -87,7 +87,7 @@
         ```
 
         Nouvelle connexion au serveur SSH:
-        
+
         La commande ssh utilise par défault le port 22 pour se connecter. Il faut donc préciser le nouveau port attribué avec l'option "-p".
         ```
             C:\Users\pierr>ssh admin@192.168.127.10 -p 2222
@@ -96,6 +96,7 @@
     * B. netcat
         netcat: :
             Serveur:
+
             ```
                 [admin@localhost ~]$ nc -l 5454
                 d
@@ -103,7 +104,9 @@
                 reussi
                 youpi
             ```
+
             Client:
+            
             ```
                 C:\Users\pierr\Desktop\netcat-1.11>nc 192.168.102.10 5454
                 d
