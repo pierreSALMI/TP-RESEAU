@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Tp3_réseau_ CentOS
 
 ## I. Création et utilisation simples d'une VM CentOS
@@ -41,4 +42,6 @@ netcat
 nc -l 5454
 nc 192.167.127.10 5454
 
+
+=======
 
