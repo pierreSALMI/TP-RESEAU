@@ -21,7 +21,8 @@ On clone 3 VMs depuis la VM patron.
     * `[user@client1 ~]$ hostname --fqdn client1 `
     * `[user@routeur1 ~]$ hostname --fqdn routeur1.tp4`
     * ` [user@server1 ~]$ hostname --fqdn server1`
-- [x] Remplissqge du fichier /etc/hosts
+
+- [x] Remplissage du fichier /etc/hosts
 
 client1 :
 ``` 
@@ -79,7 +80,8 @@ rtt min/avg/max/mdev = 0.375/0.720/1.193/0.327 ms
 
 Tableau récapitulatif:
 
-|Machine	    |net1	    |net2
-|client1.tp4	|10.1.0.10	|X
-|router1.tp4	[10.1.0.254	|10.2.0.254
-|server1.tp4	|X	        |10.2.0.10
+| Machine 1     |     2 net1      |   net2 3     |
+| ------------- |: -------------: | ---------:   |
+| 1 Online      | 10.1.0.10 1     | X 1          |
+| 2 router1.tp4 | 10.1.0.254 2    | 10.2.0.254 2 |
+| 3 server1.tp4 | X  3            | 10.2.0.10  3 |
