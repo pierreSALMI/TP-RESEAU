@@ -46,3 +46,40 @@ router1 :
 10.2.0.10 server1 server1.tp4
 10.1.0.10 client1 client1.tp4
 ```
+
+- [x] client1 ping router 1
+
+```
+[user@client1 ~]$ ping router1
+PING router1 (10.1.0.254) 56(84) bytes of data.
+64 bytes from router1 (10.1.0.254): icmp_seq=1 ttl=64 time=0.720 ms
+64 bytes from router1 (10.1.0.254): icmp_seq=2 ttl=64 time=0.769 ms
+64 bytes from router1 (10.1.0.254): icmp_seq=3 ttl=64 time=0.858 ms
+64 bytes from router1 (10.1.0.254): icmp_seq=4 ttl=64 time=0.734 ms
+^C
+--- router1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3009ms
+rtt min/avg/max/mdev = 0.720/0.770/0.858/0.057 ms
+```
+
+- [x] server1 ping router1
+
+```
+[user@server1 ~]$ ping router1
+PING router1 (10.2.0.254) 56(84) bytes of data.
+64 bytes from router1 (10.2.0.254): icmp_seq=1 ttl=64 time=1.19 ms
+64 bytes from router1 (10.2.0.254): icmp_seq=2 ttl=64 time=0.854 ms
+64 bytes from router1 (10.2.0.254): icmp_seq=3 ttl=64 time=0.458 ms
+64 bytes from router1 (10.2.0.254): icmp_seq=4 ttl=64 time=0.375 ms
+^C
+--- router1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 0.375/0.720/1.193/0.327 ms
+```
+
+Tableau récapitulatif:
+
+|Machine	    |net1	    |net2
+|client1.tp4	|10.1.0.10	|X
+|router1.tp4	[10.1.0.254	|10.2.0.254
+|server1.tp4	|X	        |10.2.0.10
