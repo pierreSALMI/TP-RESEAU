@@ -80,3 +80,36 @@ rtt min/avg/max/mdev = 0.375/0.720/1.193/0.327 ms
 
 ### 3. Mise en lace du routage statique
 
+1. Router1
+```
+[user@routeur1 ~]$ ip route
+10.1.0.0/24 dev enp0s8 proto kernel scope link src 10.1.0.254 metric 100
+10.2.0.0/24 dev enp0s9 proto kernel scope link src 10.2.0.254 metric 101
+```
+
+2. client1
+```
+[user@client1 ~]$ ip route show
+10.1.0.0/24 dev enp0s8 proto kernel scope link src 10.1.0.10 metric 100
+10.2.0.0/24 via 10.2.0.254 dev enp0s8 proto static metric 100
+10.2.0.254 dev enp0s8 proto static scope link metric 100
+```
+
+3. server1
+```
+[user@server1 ~]$ ip route show
+10.1.0.0/24 via 10.1.0.254 dev enp0s8 proto static metric 100
+10.1.0.254 dev enp0s8 proto static scope link metric 100
+10.2.0.0/24 dev enp0s8 proto kernel scope link src 10.2.0.10 metric 100
+```
+
+4. test
+    * client1 ``` [user@client1 ~]$ ping server1
+PING server1 (10.2.0.10) 56(84) bytes of data.
+64 bytes from server1 (10.2.0.10): icmp_seq=1 ttl=63 time=0.778 ms
+64 bytes from server1 (10.2.0.10): icmp_seq=2 ttl=63 time=1.41 ms
+64 bytes from server1 (10.2.0.10): icmp_seq=3 ttl=63 time=1.39 ms
+^C
+--- server1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2002ms
+rtt min/avg/max/mdev = 0.778/1.195/1.411/0.298 ms ```
