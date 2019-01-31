@@ -16,6 +16,7 @@ On clone 3 VMs depuis la VM patron.
     * client1 ```ssh user@10.1.0.10 ```
     * server1 ```ssh user@10.2.0.10 ```
     * router1 ```ssh user@10.1.0.254 ```
+
 - [x] Définition du nom de domaine
-    * ``` [user@client1 ~]$ hostname --fqdn
-client1 ```
+    * ``  [user@client1 ~]$ hostname --fqdn client1 ``
+    
