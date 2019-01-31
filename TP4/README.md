@@ -142,3 +142,186 @@ rtt min/avg/max/mdev = 0.375/0.720/1.193/0.327 ms
 ## II Spéléologie réseau
 
 ### 1. ARP
+
+#### A. Manip 1
+
+1. client1 :
+    ```
+        [user@client1 ~]$ ip neigh show
+        10.1.0.1 dev enp0s8 lladdr 0a:00:27:00:00:1a DELAY
+    ```
+La seule ligne visible est la connexion avec notre ordinateur en SSH
+
+2. server1 : 
+    ```
+        [user@server1 ~]$ ip neigh show
+        10.2.0.1 dev enp0s8 lladdr 0a:00:27:00:00:1b REACHABLE
+    ```
+La seule ligne visible est la connexion avec notre ordinateur en SSH
+
+4. client1 ping server1
+        ```
+        [user@client1 ~]$ ip neigh show
+        10.1.0.254 dev enp0s8 lladdr 08:00:27:26:4b:c5 STALE
+        10.1.0.1 dev enp0s8 lladdr 0a:00:27:00:00:1a REACHABLE
+        10.2.0.254 dev enp0s8 lladdr 08:00:27:26:4b:c5 REACHABLE
+    ```
+Le changement est dû au ping qui envoie un protocole ARP pour récupérer les adresses MAC
+
+5. sur server1
+    ```
+        [user@server1 ~]$ ip neigh show
+        10.1.0.254 dev enp0s8 lladdr 08:00:27:1c:5c:be STALE
+        10.2.0.1 dev enp0s8 lladdr 0a:00:27:00:00:1b DELAY
+        10.2.0.254 dev enp0s8 lladdr 08:00:27:1c:5c:be STALE
+    ```
+
+Le changement est dû à la réponse du ping ("pong") qui envoie un protocole ARP pour récupérer les adresses MAC
+
+#### B. Manip 2
+1. Check
+2. router1 :
+    ```
+        [user@routeur1 ~]$ ip neigh show
+        10.1.0.1 dev enp0s8 lladdr 0a:00:27:00:00:1a REACHABLE
+    ```
+
+La seule ligne visible est la connexion avec notre ordinateur en SSH sur la carte ayant comme IP 10.1.0.254
+3. Check
+4. router1
+    ```
+        [user@routeur1 ~]$ ip neigh show
+        10.1.0.1 dev enp0s8 lladdr 0a:00:27:00:00:1a DELAY
+        10.2.0.10 dev enp0s9 lladdr 08:00:27:89:17:80 STALE
+        10.1.0.10 dev enp0s8 lladdr 08:00:27:03:d0:93 STALE
+    ```
+
+Les changements sont dues au protocole ARP demandant la MAC du client1 et du server1
+
+#### C. Manip 3
+On affiche la table ARP
+    ```
+        C:\Users\pierr>arp -a
+
+        Interface : 192.168.56.1 --- 0x7
+        Adresse Internet      Adresse physique      Type
+        192.168.56.255        ff-ff-ff-ff-ff-ff     statique
+        224.0.0.22            01-00-5e-00-00-16     statique
+        224.0.0.251           01-00-5e-00-00-fb     statique
+        224.0.0.252           01-00-5e-00-00-fc     statique
+        239.255.255.250       01-00-5e-7f-ff-fa     statique
+        255.255.255.255       ff-ff-ff-ff-ff-ff     statique
+
+        Interface : 10.33.2.178 --- 0x9
+        Adresse Internet      Adresse physique      Type
+        10.33.3.37            90-cd-b6-64-bc-e7     dynamique
+        10.33.3.253           00-12-00-40-4c-bf     dynamique
+        10.33.3.254           94-0c-6d-84-50-c8     dynamique
+        10.33.3.255           ff-ff-ff-ff-ff-ff     statique
+        224.0.0.22            01-00-5e-00-00-16     statique
+        224.0.0.251           01-00-5e-00-00-fb     statique
+        224.0.0.252           01-00-5e-00-00-fc     statique
+        239.255.255.250       01-00-5e-7f-ff-fa     statique
+        255.255.255.255       ff-ff-ff-ff-ff-ff     statique
+
+        Interface : 192.168.102.1 --- 0x16
+        Adresse Internet      Adresse physique      Type
+        192.168.102.255       ff-ff-ff-ff-ff-ff     statique
+        224.0.0.22            01-00-5e-00-00-16     statique
+        224.0.0.251           01-00-5e-00-00-fb     statique
+        224.0.0.252           01-00-5e-00-00-fc     statique
+        239.255.255.250       01-00-5e-7f-ff-fa     statique
+
+        Interface : 10.1.0.1 --- 0x1a
+        Adresse Internet      Adresse physique      Type
+        10.1.0.10             08-00-27-03-d0-93     dynamique
+        10.1.0.254            08-00-27-26-4b-c5     dynamique
+        10.1.0.255            ff-ff-ff-ff-ff-ff     statique
+        224.0.0.22            01-00-5e-00-00-16     statique
+        224.0.0.251           01-00-5e-00-00-fb     statique
+        224.0.0.252           01-00-5e-00-00-fc     statique
+        239.255.255.250       01-00-5e-7f-ff-fa     statique
+
+        Interface : 10.2.0.1 --- 0x1b
+        Adresse Internet      Adresse physique      Type
+        10.2.0.10             08-00-27-89-17-80     dynamique
+        10.2.0.255            ff-ff-ff-ff-ff-ff     statique
+        224.0.0.22            01-00-5e-00-00-16     statique
+        224.0.0.251           01-00-5e-00-00-fb     statique
+        224.0.0.252           01-00-5e-00-00-fc     statique
+        239.255.255.250       01-00-5e-7f-ff-fa     statique
+    ```
+
+
+On supprime la table : 
+    ```
+        C:\WINDOWS\system32>arp -a
+
+        Interface : 192.168.56.1 --- 0x7
+        Adresse Internet      Adresse physique      Type
+        224.0.0.22            01-00-5e-00-00-16     statique
+        255.255.255.255       ff-ff-ff-ff-ff-ff     statique
+
+        Interface : 10.33.2.178 --- 0x9
+        Adresse Internet      Adresse physique      Type
+        10.33.3.253           00-12-00-40-4c-bf     dynamique
+        224.0.0.22            01-00-5e-00-00-16     statique
+        224.0.0.252           01-00-5e-00-00-fc     statique
+
+        Interface : 192.168.102.1 --- 0x16
+        Adresse Internet      Adresse physique      Type
+        224.0.0.22            01-00-5e-00-00-16     statique
+
+        Interface : 10.1.0.1 --- 0x1a
+        Adresse Internet      Adresse physique      Type
+        224.0.0.22            01-00-5e-00-00-16     statique
+
+        Interface : 10.2.0.1 --- 0x1b
+        Adresse Internet      Adresse physique      Type
+        224.0.0.22            01-00-5e-00-00-16     statique
+    ```
+
+On l'affiche de nouveau :
+    ```
+        C:\WINDOWS\system32>arp -a
+
+        Interface : 192.168.56.1 --- 0x7
+        Adresse Internet      Adresse physique      Type
+        192.168.56.255        ff-ff-ff-ff-ff-ff     statique
+        224.0.0.22            01-00-5e-00-00-16     statique
+        224.0.0.252           01-00-5e-00-00-fc     statique
+        239.255.255.250       01-00-5e-7f-ff-fa     statique
+        255.255.255.255       ff-ff-ff-ff-ff-ff     statique
+
+        Interface : 10.33.2.178 --- 0x9
+        Adresse Internet      Adresse physique      Type
+        10.33.3.253           00-12-00-40-4c-bf     dynamique
+        10.33.3.255           ff-ff-ff-ff-ff-ff     statique
+        224.0.0.22            01-00-5e-00-00-16     statique
+        224.0.0.252           01-00-5e-00-00-fc     statique
+        239.255.255.250       01-00-5e-7f-ff-fa     statique
+
+        Interface : 192.168.102.1 --- 0x16
+        Adresse Internet      Adresse physique      Type
+        192.168.102.255       ff-ff-ff-ff-ff-ff     statique
+        224.0.0.22            01-00-5e-00-00-16     statique
+        224.0.0.252           01-00-5e-00-00-fc     statique
+        239.255.255.250       01-00-5e-7f-ff-fa     statique
+
+        Interface : 10.1.0.1 --- 0x1a
+        Adresse Internet      Adresse physique      Type
+        10.1.0.255            ff-ff-ff-ff-ff-ff     statique
+        224.0.0.22            01-00-5e-00-00-16     statique
+        224.0.0.252           01-00-5e-00-00-fc     statique
+        239.255.255.250       01-00-5e-7f-ff-fa     statique
+
+        Interface : 10.2.0.1 --- 0x1b
+        Adresse Internet      Adresse physique      Type
+        10.2.0.255            ff-ff-ff-ff-ff-ff     statique
+        224.0.0.22            01-00-5e-00-00-16     statique
+        224.0.0.252           01-00-5e-00-00-fc     statique
+        239.255.255.250       01-00-5e-7f-ff-fa     statique
+    ```
+
+#### D. Manip 4
+
