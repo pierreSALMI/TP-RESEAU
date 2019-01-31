@@ -1,11 +1,11 @@
-#TP4 - Routage Statique
+# TP4 - Routage Statique
 
-##I. Mise en place du lab
+## I. Mise en place du lab
 
-1. Création des réseaux
+### 1. Création des réseaux
 Création de deux cartes réseau ayant comme IP : 10.1.0.1 et 10.2.0.1 sans serveur DHCP.
 
-2. Création des VMs
+### 2. Création des VMs
 On clone 3 VMs depuis la VM patron.
 
 - [x] Désactiver SELinux (fait sur le patron)
@@ -78,10 +78,5 @@ PING router1 (10.2.0.254) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.375/0.720/1.193/0.327 ms
 ```
 
-Tableau récapitulatif:
+### 3. Mise en lace du routage statique
 
-| Machine 1     |     2 net1      |   net2 3     |
-| ------------- |: -------------: | ---------:   |
-| 1 Online      | 10.1.0.10 1     | X 1          |
-| 2 router1.tp4 | 10.1.0.254 2    | 10.2.0.254 2 |
-| 3 server1.tp4 | X  3            | 10.2.0.10  3 |
