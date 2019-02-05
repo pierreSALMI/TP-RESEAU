@@ -325,3 +325,18 @@ On l'affiche de nouveau :
 
 #### D. Manip 4
 
+On `curl google.com` puis affiche la table ARP:
+    ```
+        [user@client1 ~]$ ip neigh show
+        10.0.2.2 dev enp0s3 lladdr 52:54:00:12:35:02 REACHABLE
+        10.1.0.1 dev enp0s8 lladdr 0a:00:27:00:00:1a REACHABLE
+    ```
+### 2. Wireshark
+
+####A Interception d'ARP et ping
+
+![Image ping](/images/ping.PNG)
+
+####B Interception d'une communication netcat
+
+![Image netcat_ok](/images/netcat_ok.PNG)
