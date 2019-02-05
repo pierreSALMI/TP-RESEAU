@@ -333,10 +333,10 @@ On `curl google.com` puis affiche la table ARP:
     ```
 ### 2. Wireshark
 
-####A Interception d'ARP et ping
+#### A. Interception d'ARP et ping
 
 ![Image ping](./images/ping.PNG)
 
-####B Interception d'une communication netcat
+#### B. Interception d'une communication netcat
 
 ![Image netcat_ok](./images/netcat_ok.PNG)
