@@ -335,8 +335,8 @@ On `curl google.com` puis affiche la table ARP:
 
 ####A Interception d'ARP et ping
 
-![Image ping](/images/ping.PNG)
+![Image ping](./images/ping.PNG)
 
 ####B Interception d'une communication netcat
 
-![Image netcat_ok](/images/netcat_ok.PNG)
+![Image netcat_ok](./images/netcat_ok.PNG)
