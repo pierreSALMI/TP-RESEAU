@@ -175,3 +175,13 @@
 
 
 ## III DHCP
+
+Après avoir télécharger DHCP, réglé lsudo dhclient -ves erreurs(merci léo) et lancé le serveur on fait un test
+
+```
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:2b:72:2a brd ff:ff:ff:ff:ff:ff
+    inet 10.5.2.50/24 brd 10.5.2.255 scope global noprefixroute dynamic enp0s3
+       valid_lft 598sec preferred_lft 598sec
+```
+l'adresse était 10.5.2.10 mainetant le serveur dhcp lui a donné comme adresse 10.5.2.50
