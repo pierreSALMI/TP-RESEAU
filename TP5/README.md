@@ -123,7 +123,7 @@
     ```
     [user@server1 ~]$ ip route show
     10.5.1.0/24 dev enp0s3 proto kernel scope link src 10.5.1.10 metric 100
-    10.5.2.0/24 via 10.5.2.254 dev enp0s3 proto static metric 100
+    10.5.2.0/24 via 10.5.1.254 dev enp0s3 proto static metric 100
     10.5.2.254 dev enp0s3 proto static scope link metric 100
     192.168.143.0/24 dev enp0s8 proto kernel scope link src 192.168.143.3 metric 101
     ```
@@ -131,7 +131,7 @@
 * Client1
     ```
     [user@client1 ~]$ ip route show
-    10.5.1.0/24 via 10.5.1.254 dev enp0s3 proto static metric 100
+    10.5.1.0/24 via 10.5.2.254 dev enp0s3 proto static metric 100
     10.5.1.254 dev enp0s3 proto static scope link metric 100
     10.5.2.0/24 dev enp0s3 proto kernel scope link src 10.5.2.10 metric 100
     192.168.143.0/24 dev enp0s8 proto kernel scope link src 192.168.143.4 metric 101
