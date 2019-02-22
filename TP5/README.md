@@ -103,7 +103,6 @@
 ### Checklist Route
 * routeur1
     ```
-
         10.0.0.0/24 is subnetted, 3 subnets
     C       10.5.3.0 is directly connected, Ethernet0/1
     S       10.5.2.0 [1/0] via 10.5.3.2
@@ -120,4 +119,59 @@
     S*   0.0.0.0/0 [1/0] via 10.5.3.1
     ```
 
+* Server1
+    ```
+    [user@server1 ~]$ ip route show
+    10.5.1.0/24 dev enp0s3 proto kernel scope link src 10.5.1.10 metric 100
+    10.5.2.0/24 via 10.5.2.254 dev enp0s3 proto static metric 100
+    10.5.2.254 dev enp0s3 proto static scope link metric 100
+    192.168.143.0/24 dev enp0s8 proto kernel scope link src 192.168.143.3 metric 101
+    ```
+
 * Client1
+    ```
+    [user@client1 ~]$ ip route show
+    10.5.1.0/24 via 10.5.1.254 dev enp0s3 proto static metric 100
+    10.5.1.254 dev enp0s3 proto static scope link metric 100
+    10.5.2.0/24 dev enp0s3 proto kernel scope link src 10.5.2.10 metric 100
+    192.168.143.0/24 dev enp0s8 proto kernel scope link src 192.168.143.4 metric 101
+    ```
+
+* Client2
+    ```
+    [user@client2 ~]$ ip route show
+    10.5.1.0/24 via 10.5.2.254 dev enp0s3 proto static metric 100
+    10.5.2.0/24 dev enp0s3 proto kernel scope link src 10.5.2.11 metric 100
+    192.168.143.0/24 dev enp0s8 proto kernel scope link src 192.168.143.5 metric 101
+    ```
+
+* client1 ping server1
+    ```
+    [user@client1 ~]$ ping server1
+    PING server1 (10.5.1.10) 56(84) bytes of data.
+    64 bytes from server1 (10.5.1.10): icmp_seq=1 ttl=62 time=37.4 ms
+    64 bytes from server1 (10.5.1.10): icmp_seq=2 ttl=62 time=33.5 ms
+    64 bytes from server1 (10.5.1.10): icmp_seq=3 ttl=62 time=40.8 ms
+    64 bytes from server1 (10.5.1.10): icmp_seq=4 ttl=62 time=36.5 ms
+    ^C
+    --- server1 ping statistics ---
+    4 packets transmitted, 4 received, 0% packet loss, time 3003ms
+    rtt min/avg/max/mdev = 33.588/37.114/40.885/2.607 ms
+    ```
+
+* client2 ping server1 
+    ```
+    [user@client2 ~]$ ping server1
+    PING server1 (10.5.1.10) 56(84) bytes of data.
+    64 bytes from server1 (10.5.1.10): icmp_seq=1 ttl=62 time=33.2 ms
+    64 bytes from server1 (10.5.1.10): icmp_seq=2 ttl=62 time=24.9 ms
+    64 bytes from server1 (10.5.1.10): icmp_seq=3 ttl=62 time=24.7 ms
+    64 bytes from server1 (10.5.1.10): icmp_seq=4 ttl=62 time=41.5 ms
+    ^C
+    --- server1 ping statistics ---
+    4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+    rtt min/avg/max/mdev = 24.762/31.106/41.554/6.932 ms
+    ```
+
+
+## III DHCP
