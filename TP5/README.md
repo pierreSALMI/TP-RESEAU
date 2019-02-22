@@ -46,6 +46,7 @@
     ```
 
 #### Server 1
+
 - [x] Désactiver SELinux (fait sur le patron)
 - [x] Installation de certains paquets dans le patron (fait sur le patron)
 - [x] Désactivation de la carte NAT (fait sur le patron)
@@ -66,6 +67,7 @@
 ### Checklist Routeurs
 
 #### Routeur 1
+
 - [x]Définitions des IPs statiques
     ```
     R1#show ip int br
@@ -82,6 +84,7 @@
     ``` 
 
 #### Routeur 2
+
 - [x]Définitions des IPs statiques
     ```
     R2#show ip int br
