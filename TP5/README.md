@@ -68,7 +68,7 @@
 
 #### Routeur 1
 
-- [x]Définitions des IPs statiques
+- [x] Définitions des IPs statiques
     ```
     R1#show ip int br
     Interface                  IP-Address      OK? Method Status                Protocol
@@ -85,7 +85,7 @@
 
 #### Routeur 2
 
-- [x]Définitions des IPs statiques
+- [x] Définitions des IPs statiques
     ```
     R2#show ip int br
     Interface                  IP-Address      OK? Method Status                Protocol
