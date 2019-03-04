@@ -151,3 +151,89 @@
     5 packets transmitted, 4 received, 20% packet loss, time 4007ms
     rtt min/avg/max/mdev = 60.663/71.416/76.894/6.570 ms
 ```
+
+## Lab 3 : Let's end this properly
+
+### 1. NAT : accès internet
+#### ip interface
+```
+R4#show ip int br
+Interface                  IP-Address      OK? Method Status                Protocol
+Ethernet0/0                192.168.122.12  YES DHCP   up                    up
+Ethernet0/1                10.6.100.13     YES NVRAM  up                    up
+Ethernet0/2                10.6.100.6      YES NVRAM  up                    up
+Ethernet0/3                unassigned      YES NVRAM  administratively down down
+```
+
+#### Route
+```
+R4#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is 192.168.122.1 to network 0.0.0.0
+
+C    192.168.122.0/24 is directly connected, Ethernet0/0
+     10.0.0.0/8 is variably subnetted, 7 subnets, 2 masks
+O       10.6.100.8/30 [110/20] via 10.6.100.14, 00:20:22, Ethernet0/1
+C       10.6.100.12/30 is directly connected, Ethernet0/1
+O       10.6.100.0/30 [110/20] via 10.6.100.5, 00:20:22, Ethernet0/2
+O       10.6.101.0/30 [110/20] via 10.6.100.14, 00:20:22, Ethernet0/1
+C       10.6.100.4/30 is directly connected, Ethernet0/2
+O IA    10.6.201.0/24 [110/30] via 10.6.100.14, 00:20:22, Ethernet0/1
+O IA    10.6.202.0/24 [110/20] via 10.6.100.5, 00:20:24, Ethernet0/2
+S*   0.0.0.0/0 [254/0] via 192.168.122.1
+```
+
+#### Ping google depuis R4
+```
+R4#ping 8.8.8.8
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 8.8.8.8, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 32/103/148 ms
+```
+
+#### Ping google depuis client1
+```
+[user@client1 ~]$ ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=110 time=115 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=110 time=90.9 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=110 time=279 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=110 time=158 ms
+^C
+--- 8.8.8.8 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 90.966/161.160/279.774/72.611 ms
+```
+
+#### youpi pas d'html en mass je vois ca demain
+
+```
+R1#telnet tip-hop.net 80
+Translating "tip-hop.net"...domain server (8.8.8.8)
+% Unknown command or computer name, or unable to find computer address
+R1#telnet trip-hop.net 80
+Translating "trip-hop.net"...domain server (8.8.8.8) [OK]
+Trying trip-hop.net (213.186.33.4, 80)... Open
+
+GET /
+HTTP/1.0 400 Bad request
+Cache-Control: no-cache
+Connection: close
+Content-Type: text/html
+
+<html><body><h1>400 Bad request</h1>
+                                    Your browser sent an invalid request.
+                                                                         </body></html>
+
+[Connection to trip-hop.net closed by foreign host]
+
+```
