@@ -214,12 +214,9 @@ PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 rtt min/avg/max/mdev = 90.966/161.160/279.774/72.611 ms
 ```
 
-#### youpi pas d'html en mass je vois ca demain
+#### Requête WEB sur un serveur web HTTP (trip-hop.net)
 
 ```
-R1#telnet tip-hop.net 80
-Translating "tip-hop.net"...domain server (8.8.8.8)
-% Unknown command or computer name, or unable to find computer address
 R1#telnet trip-hop.net 80
 Translating "trip-hop.net"...domain server (8.8.8.8) [OK]
 Trying trip-hop.net (213.186.33.4, 80)... Open
@@ -235,5 +232,8 @@ Content-Type: text/html
                                                                          </body></html>
 
 [Connection to trip-hop.net closed by foreign host]
-
 ```
+
+On obtient pas l'HTML du site mais le serveur répond avec une erreur 400.
+
+### 2. un service d'infra
