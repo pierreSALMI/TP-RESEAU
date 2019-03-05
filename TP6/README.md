@@ -237,3 +237,8 @@ Content-Type: text/html
 On obtient pas l'HTML du site mais le serveur répond avec une erreur 400.
 
 ### 2. un service d'infra
+
+On mets en place le server1 pour pouvoir le `curl` depuis le client1. Après la mise en place on `curl server1` depuis le client1 et l'on récupère de l'HTML.
+
+
+### 3. Serveru DHCP
