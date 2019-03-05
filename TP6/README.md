@@ -242,3 +242,18 @@ On mets en place le server1 pour pouvoir le `curl` depuis le client1. Après la 
 
 
 ### 3. Serveru DHCP
+
+On défini la plage d'IP entre `10.6.201.50` et `10.6.201.70`.
+On mets en place le serveur DHCP.
+Après le test sur `client1.tp6.b1` son ip est maintenant `10.6.201.50`
+
+```
+    2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:ad:41:08 brd ff:ff:ff:ff:ff:ff
+    inet 10.6.201.50/24 brd 10.6.201.255 scope global noprefixroute dynamic enp0s3
+       valid_lft 599sec preferred_lft 599sec
+    inet 10.6.201.10/24 brd 10.6.201.255 scope global secondary noprefixroute enp0s3
+       valid_lft forever preferred_lft forever
+    inet6 fe80::a00:27ff:fead:4108/64 scope link
+       valid_lft forever preferred_lft forever
+```
