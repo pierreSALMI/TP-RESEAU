@@ -257,3 +257,121 @@ Après le test sur `client1.tp6.b1` son ip est maintenant `10.6.201.50`
     inet6 fe80::a00:27ff:fead:4108/64 scope link
        valid_lft forever preferred_lft forever
 ```
+
+### 4. Serveur DNS
+#### Mise en Place
+```
+[user@server1 ~]$ sudo systemctl status named
+● named.service - Berkeley Internet Name Domain (DNS)
+   Loaded: loaded (/usr/lib/systemd/system/named.service; enabled; vendor preset: disabled)
+   Active: active (running) since Tue 2019-03-05 11:50:31 CET; 36min ago
+ Main PID: 7203 (named)
+   CGroup: /system.slice/named.service
+           └─7203 /usr/sbin/named -u named -c /etc/named.conf
+```
+
+#### Teste
+
+* `dig server1.tp6.b1`
+```
+[user@client1 ~]$ dig server1.tp6.b1
+
+; <<>> DiG 9.9.4-RedHat-9.9.4-72.el7 <<>> server1.tp6.b1
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 53616
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 1
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;server1.tp6.b1.                        IN      A
+
+;; ANSWER SECTION:
+server1.tp6.b1.         604800  IN      A       10.6.202.10
+
+;; AUTHORITY SECTION:
+tp6.b1.                 604800  IN      NS      server1.tp6.b1.
+
+;; Query time: 67 msec
+;; SERVER: 10.6.202.10#53(10.6.202.10)
+;; WHEN: Tue Mar 05 12:28:27 CET 2019
+;; MSG SIZE  rcvd: 73
+```
+
+* `dig client1.tp6.b1`
+```
+[user@client1 ~]$ dig client1.tp6.b1
+
+; <<>> DiG 9.9.4-RedHat-9.9.4-72.el7 <<>> client1.tp6.b1
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 18929
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;client1.tp6.b1.                        IN      A
+
+;; ANSWER SECTION:
+client2.tp6.b1.         604800  IN      A       10.6.201.11
+
+;; AUTHORITY SECTION:
+tp6.b1.                 604800  IN      NS      server1.tp6.b1.
+
+;; ADDITIONAL SECTION:
+server1.tp6.b1.         604800  IN      A       10.6.202.10
+
+;; Query time: 49 msec
+;; SERVER: 10.6.202.10#53(10.6.202.10)
+;; WHEN: Tue Mar 05 12:29:10 CET 2019
+;; MSG SIZE  rcvd: 97
+```
+
+* `dig -x 10.6.201.10`
+```
+[user@client1 ~]$ dig -x 10.6.201.10
+
+; <<>> DiG 9.9.4-RedHat-9.9.4-72.el7 <<>> -x 10.6.201.10
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 59440
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;10.201.6.10.in-addr.arpa.      IN      PTR
+
+;; ANSWER SECTION:
+10.201.6.10.in-addr.arpa. 86400 IN      PTR     client1.tp6.b1.
+
+;; AUTHORITY SECTION:
+6.10.in-addr.arpa.      86400   IN      NS      server1.tp6.b1.
+
+;; ADDITIONAL SECTION:
+server1.tp6.b1.         604800  IN      A       10.6.202.10
+
+;; Query time: 66 msec
+;; SERVER: 10.6.202.10#53(10.6.202.10)
+;; WHEN: Tue Mar 05 12:30:37 CET 2019
+;; MSG SIZE  rcvd: 119
+```
+
+* `ping client2.tp6.b1`
+```
+[user@client1 ~]$ ping client2.tp6.b1
+PING client2.tp6.b1 (10.6.201.10) 56(84) bytes of data.
+64 bytes from client1.tp6.b1 (10.6.201.10): icmp_seq=1 ttl=64 time=0.031 ms
+64 bytes from client1.tp6.b1 (10.6.201.10): icmp_seq=2 ttl=64 time=0.076 ms
+64 bytes from client1.tp6.b1 (10.6.201.10): icmp_seq=3 ttl=64 time=0.040 ms
+64 bytes from client1.tp6.b1 (10.6.201.10): icmp_seq=4 ttl=64 time=0.040 ms
+^C
+--- client2.tp6.b1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3000ms
+rtt min/avg/max/mdev = 0.031/0.046/0.076/0.019 ms
+```
