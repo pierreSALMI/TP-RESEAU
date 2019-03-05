@@ -241,7 +241,7 @@ On obtient pas l'HTML du site mais le serveur répond avec une erreur 400.
 On mets en place le server1 pour pouvoir le `curl` depuis le client1. Après la mise en place on `curl server1` depuis le client1 et l'on récupère de l'HTML.
 
 
-### 3. Serveru DHCP
+### 3. Serveur DHCP
 
 On défini la plage d'IP entre `10.6.201.50` et `10.6.201.70`.
 On mets en place le serveur DHCP.
