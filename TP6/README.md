@@ -375,3 +375,40 @@ PING client2.tp6.b1 (10.6.201.10) 56(84) bytes of data.
 4 packets transmitted, 4 received, 0% packet loss, time 3000ms
 rtt min/avg/max/mdev = 0.031/0.046/0.076/0.019 ms
 ```
+
+### 5. Serveur NTP
+* server1
+```
+[user@server1 ~]$ chronyc tracking
+Reference ID    : 7F7F0101 ()
+Stratum         : 10
+Ref time (UTC)  : Thu Mar 07 14:32:43 2019
+System time     : 0.000000001 seconds fast of NTP time
+Last offset     : +0.000000000 seconds
+RMS offset      : 0.000000000 seconds
+Frequency       : 0.200 ppm fast
+Residual freq   : +0.000 ppm
+Skew            : 0.000 ppm
+Root delay      : 0.000000000 seconds
+Root dispersion : 0.000000000 seconds
+Update interval : 0.0 seconds
+Leap status     : Normal
+```
+
+* client1
+```
+[user@client1 ~]$ chronyc tracking
+Reference ID    : 7F7F0101 ()
+Stratum         : 10
+Ref time (UTC)  : Thu Mar 07 14:40:01 2019
+System time     : 0.000000000 seconds slow of NTP time
+Last offset     : +0.000000000 seconds
+RMS offset      : 0.000000000 seconds
+Frequency       : 0.000 ppm slow
+Residual freq   : +0.000 ppm
+Skew            : 0.000 ppm
+Root delay      : 0.000000000 seconds
+Root dispersion : 0.000000000 seconds
+Update interval : 0.0 seconds
+Leap status     : Normal
+```
